@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style='height:{{windowHeight}}px'>
+  <view class='title_index'>
+    <image src="../../image/icon/ai.png"></image>
+    <text>即刻识图</text>
+  </view>
+  <view class='search_class'>
+    <!-- 搜索输入框 -->
+    <!-- <view> -->
+    <input value='{{searchurl}}' bindinput='Search_str' placeholder='输入图片链接' maxlength='20000' type='text' confirm-type='search'></input>
+    <image class='input_image' catchtap='upload_images' mode="aspectFill" wx:if="{{logoShow}}" src="../../image/icon/baiimg.png"></image>
+    <image class='input_image' mode="aspectFill" wx:if="{{imgShow}}" src="{{this_img}}"></image>
+    <text class='input_button' catchtap='searchs'>识图</text>
+    <!-- </view> -->
+    <!-- 搜索输入框 -->
+    <!-- 上传图标 -->
+    <!-- <view class="indeximages" bindtap='upload_images'> -->
+    <!-- <image mode="aspectFill" wx:if="{{logoShow}}" src="../../image/icon/baiimg.png"></image> -->
+    <!-- <image mode="aspectFill" wx:if="{{imgShow}}" src="{{this_img}}"></image> -->
+    <!-- </view> -->
+    <!-- 上传图标 -->
+  </view>
+</view>

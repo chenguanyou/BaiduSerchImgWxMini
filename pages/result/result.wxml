@@ -1,0 +1,116 @@
+<!--pages/result/result.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='result_view_root' style='padding-top: {{height}}px'>
+
+  <view class='tesult_titles'>
+    <view class='tesult_titles_image'>
+      <image style='width:100%;' mode="aspectFill" src='{{this_images}}'></image>
+    </view>
+    <view class='tesult_titles_text_title'>
+      <image style='width:50rpx;height:50rpx;vertical-align: middle;' src="../../image/icon/ai.png"></image>
+      <text>即刻识图</text>
+      <view>如果疑问请发送邮件：binary@shujian.org</view>
+    </view>
+  </view>
+  <!-- 获取百科的数据 -->
+  <view wx:if="{{result['get_baike']['contents']}}" class='baohan_images'>
+    <text>百科小知识:</text>
+  </view>
+  <view class='result_baike_view_root' wx:if="{{result['get_baike']['contents']}}">
+    <!-- 百科的简介 -->
+    <view style='font-weight:600;'>{{result['get_baike']['name']}}</view>
+    <view>{{result['get_baike']['type']}}</view>
+    <view class='baike_centent'>{{result['get_baike']['contents']}}</view>
+    <!-- 百科的简介 -->
+    <!-- 百科的视频 -->
+    <view class='baike_video'>
+      <video wx:if="{{result['get_miaodongbaike']['video']['playUrl']}}" src="{{result['get_miaodongbaike']['video']['playUrl']}}"></video>
+    </view>
+  </view>
+  <!-- 百科的视频 -->
+  <view wx:if="{{result['get_yanzhi']['resu']}}" class='baohan_images'>
+    <text>颜值评测:</text>
+  </view>
+  <view wx:if="{{result['get_yanzhi']['resu']}}" style='word-break: break-all;font-size:15px;padding-left:20px;padding-right:20px;background: #FFFFFF;'>
+    <view>
+      <view style='margin-top:10px;'>
+        <text style='font-weight: bold;'>面相征兆：</text> {{result['get_yanzhi']['resu']['resu_kx']}}
+      </view>
+      <view style='margin-top:10px;'>
+        <text style='font-weight: bold;'>面相评分：</text> {{result['get_yanzhi']['resu']['resu']}}
+      </view>
+      <view style='margin-top:10px;'>
+        <text style='font-weight: bold;'>颜值标签：</text> {{result['get_yanzhi']['yanzhi']['Bq']}}
+      </view>
+      <view style='margin-top:10px;'>
+        <text style='font-weight: bold;'>颜值评分：</text> {{result['get_yanzhi']['yanzhi']['Yanzhi']}}
+      </view>
+      <view style='margin-top:10px;'>
+        <text style='font-weight: bold;'>颜值特点：</text> {{result['get_yanzhi']['tag']['tag']}}
+      </view>
+      <view style='margin-top:10px;'>
+        <text style='font-weight: bold;'>面部最美：</text> {{result['get_yanzhi']['yanzhi']['mb']}}
+      </view>
+      <view style='margin-top:10px;'>
+        <text style='font-weight: bold;'>颜值气质：</text> {{result['get_yanzhi']['yanzhi']['Qz']}}
+      </view>
+      <view style='margin-top:10px;margin-bottom:10px;'>
+        <text style='font-weight: bold;'>面相介绍：</text> {{result['get_yanzhi']['resu']['resu_content']}}
+      </view>
+    </view>
+  </view>
+  <!-- 百科的图片 -->
+  <!-- <view class='result_baike_view_root' wx:if="{{result['get_miaodongbaike']['imglist']}}">
+    <view class='baike_images'>
+      <image mode="aspectFill" wx:for="{{result['get_miaodongbaike']['imglist']}}" src='{{item.imgUrl}}'></image>
+    </view>
+  </view> -->
+  <!-- 百科的图片 -->
+  <!-- 获取百科的数据 -->
+  <!--  -->
+  <view class='baohan_images' wx:if="{{result['get_image'].length != 0}}">
+    <text>包含图片信息的:</text>
+  </view>
+  <view class='baohan_images_data' wx:for="{{result['get_image']}}" wx:key>
+    <view class='baohan_images_img' wx:if="{{item.images != '-'}}">
+      <image mode="widthFix" src="{{item.images}}"></image>
+    </view>
+    <view>
+      <text>{{item.title}}</text>
+    </view>
+  </view>
+  <!--  -->
+  <view>
+    <view class='baohan_images' wx:if="{{result['get_xiangshi'].length != 0}}">
+      <text>相似的图片:</text>
+    </view>
+    <view class='baohan_images_data' wx:for="{{result['get_xiangshi']['list']}}" wx:key>
+      <view class='baohan_images_img'>
+        <image mode="widthFix" src="{{item.thumbUrl}}"></image>
+      </view>
+      <view>
+        <view style='color:#FC592C'>
+          <text>相似度：{{item.contsign[0] / item.contsign[1]}}</text>
+        </view>
+        <text>{{item.text[0]}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分享按钮 -->
+  <view class='share-btn' catchtap='Share_svc' wx:if='{{shares_icon_isshow}}'>
+    <image src='../../image/icon/pengyouq.png'></image>
+  </view>
+  <!-- 分享按钮 -->
+    <!-- 分享图 -->
+  <view class='sharing_view' wx:if='{{shares_isshow}}' catchtouchmove='true'>
+    <view class='save_shareing_images'>
+      <image mode="widthFix" style='width:{{width_phone}}px; height:{{height_phone}}rpx;' src='../../image/icon/share.jpg'></image>
+    </view>
+    <view class='save_shareing_image' catchtap='server_shares' style="{{res_screenHeight >= 800?'bottom:240rpx;':'bottom:120rpx;'}}">
+      <text>保存到相册，分享给好友吧！{{res_windowHeight}}</text>
+    </view>
+    <view class="mask" catchtap="outbtn" wx:if="{{shares_isshow}}"></view>
+  </view>
+  <!-- 分享图 -->
+</view>

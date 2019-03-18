@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "即刻识图",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FC4234",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#FC4234",
+    "usingComponents": {
+      "nav-bar": "/commpents/navbar/navbar"
+    }
+}

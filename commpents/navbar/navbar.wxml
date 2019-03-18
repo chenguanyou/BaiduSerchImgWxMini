@@ -1,0 +1,18 @@
+<view class='nav-wrap' style='height: {{height*2 + 25}}px;'>
+  <view class='nav-title' style='line-height: {{height*2 + 44}}px;'>{{navbarData.title}}</view>
+  <view style='display: flex; justify-content: space-around;flex-direction: column'>
+    <view class='nav-capsule' style='height: {{height*2 + 44}}px;' wx:if='{{navbarData.showCapsule}}'>
+      <!-- <view bindtap='_navback' wx:if='{{!share}}'>
+        <image src='../../image/icon/backgroun.png' mode='aspectFill' class='back-pre'></image>
+      </view> -->
+      <view bindtap='_navback'>
+        <image src='../../image/icon/backgroun.png' mode='aspectFill' class='back-pre'></image>
+      </view>
+      <!-- <view class='navbar-v-line' wx:if='{{!share}}'></view> -->
+      <view class='navbar-v-line'></view>
+      <view bindtap='_backhome'>
+        <image src='../../image/icon/home.png' mode='aspectFill' class='back-home'></image>
+      </view>
+    </view>
+  </view>
+</view>
